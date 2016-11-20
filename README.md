@@ -28,4 +28,13 @@ The way to build both the Spark and the Spark CSV library is to proceed in this 
 3. Rebuild the spark code while taking into account the modified Spark CSV library
 e.g.,  mvn -Pyarn -Phadoop-2.7.1 -Dhadoop.version=2.7.1 -DskipTests package
 
+How is that code invoked?
+========================
+
+Spark SQL detects through introspection what API are implemented by the CSVRelation class.
+In case the extended buildScan API is detected (the one that we added) and some filter is required,
+Spark SQL will invoke the extended buildScan.
+So no change is needed for Spark SQL 
+
+
 
